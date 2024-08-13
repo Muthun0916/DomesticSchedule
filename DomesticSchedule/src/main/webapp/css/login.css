@@ -1,0 +1,54 @@
+@charset "UTF-8";
+body{
+	text-align:center;
+	background-color: #f0d09f;
+	margin:0;
+	padding:0;
+}
+#header{
+	margin:0;
+	padding:3px;
+	text-align: left;
+	color:#a85528;
+	font-family: "Playfair Display", serif;
+}
+#content{
+	text-align:center;
+	width:80%;
+	height:100%;
+	margin:0 auto;
+	padding:10px;
+	background-color: #fff;
+}
+
+.center {
+    width: fit-content;
+    margin: auto;
+}
+
+.center th {
+    text-align: left;
+    vertical-align:top;
+}
+
+@media (max-width: 768px) {
+    #content {
+        width: 95%; /* モバイルでの幅を広げる */
+        padding: 5px; /* パディングを減らす */
+    }
+
+    #header {
+        text-align: center; /* ヘッダーを中央揃えに変更 */
+        font-size: 1.2em; /* フォントサイズを調整 */
+    }
+
+    body {
+        font-size: 16px; /* 全体のフォントサイズを調整 */
+    }
+
+    .center {
+        width: 100%; /* 中央揃えの幅を100%にする */
+        margin: 0 auto; /* 中央に揃える */
+    }
+}
+

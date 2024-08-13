@@ -56,7 +56,7 @@ public class RegistAccountServlet extends HttpServlet {
 			System.out.println(account);
 			//存在するアカウントなら認証済み
 			if (account.isAuthorized()) {
-				request.setAttribute("message", "すでにそのIDは使用されています");
+				request.setAttribute("registMsg", "すでにそのIDは使用されています");
 				LogManager.print("ERROR:既存のIDで新規作成を試みました(ID:" + id + ")");
 				RequestDispatcher rd = request.getRequestDispatcher("/page/regist.jsp");
 				rd.forward(request, response);
@@ -67,7 +67,7 @@ public class RegistAccountServlet extends HttpServlet {
 		}
 
 		if (!password1.equals(password2)) {
-			request.setAttribute("message", "パスワードが一致していません");
+			request.setAttribute("registMsg", "パスワードが一致していません");
 			LogManager.print("ERROR:登録用の2つのパスワードが一致しませんでした");
 			RequestDispatcher rd = request.getRequestDispatcher("/page/regist.jsp");
 			rd.forward(request, response);

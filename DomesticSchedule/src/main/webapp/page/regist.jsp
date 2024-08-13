@@ -10,7 +10,7 @@
 </head>
 <body>
 <h1>アカウント登録</h1>
-<font color="red"><c:out value="${message}"/></font>
+<font color="red"><c:out value="${registMsg}"/></font>
 <form action="${regist}" method="post">
 <p>ユーザー名<input type="text" name="username"></p>
 <p>ユーザーID<input type="text" name="user_id"></p>

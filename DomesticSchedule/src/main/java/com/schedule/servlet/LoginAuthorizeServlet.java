@@ -2,7 +2,6 @@ package com.schedule.servlet;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +13,7 @@ import com.schedule.app.Account;
 import com.schedule.exception.ServiceException;
 import com.schedule.service.AccountManager;
 import com.schedule.service.LogManager;
+import com.schedule.service.TimeManager;
 
 /**
  * Servlet implementation class LoginAuthorize
@@ -45,6 +45,7 @@ public class LoginAuthorizeServlet extends HttpServlet {
 		String id = request.getParameter("account_id");
 		String password = request.getParameter("account_password");
 
+		HttpSession session = request.getSession();
 		AccountManager am = new AccountManager();
 		Account account = new Account();
 		try {
@@ -56,24 +57,22 @@ public class LoginAuthorizeServlet extends HttpServlet {
 		account.isValid();
 		//アカウントが存在しない場合
 		if (!account.isAuthorized()) {
-			request.setAttribute("message", "IDもしくはパスワードが違います");
+			session.setAttribute("loginMsg", "IDもしくはパスワードが違います");
 			LogManager.print("ERROR:指定のIDのアカウントが存在しませんでした(ID:" + id + ")");
-			RequestDispatcher rd = request.getRequestDispatcher("/page/login.jsp");
-			rd.forward(request, response);
+			response.sendRedirect(request.getContextPath() + "/page/login.jsp");
 			return;
 		}
 
 		//アカウントは存在するがパスワードが異なる場合
 		if (!account.getPassword().equals(password)) {
-			request.setAttribute("message", "IDもしくはパスワードが違います");
+			session.setAttribute("loginMsg", "IDもしくはパスワードが違います");
 			LogManager.print("ERROR:指定のアカウントとパスワードが一致しませんでした(ID:" + id + "," + "PS:" + password + ")");
-			RequestDispatcher rd = request.getRequestDispatcher("/page/login.jsp");
-			rd.forward(request, response);
+			response.sendRedirect(request.getContextPath() + "/page/login.jsp");
 			return;
 		}
 
-		HttpSession session = request.getSession();
 		session.setAttribute("account", account);
+		session.setAttribute("greeting", TimeManager.getGreeting());
 		LogManager.print("SUCCESS:以下のIDでアカウントにログインされました(ID:" + id + ")");
 		response.sendRedirect(request.getContextPath() + "/page/menu.jsp");
 	}

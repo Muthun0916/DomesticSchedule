@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 
 public class LogManager {
 
-	private static final String FILE_PATH = "C:\\mutumin\\spogit\\pleiades\\workspace\\DomesticSchedule\\src\\main\\webapp\\META-INF\\log.txt";
+	private static final String FILE_PATH = "log.txt";
 
 	public static void print(String message) {
 		// 日付と時刻のフォーマット

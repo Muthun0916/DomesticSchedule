@@ -6,12 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>スケジュール管理アプリ</title>
+<c:url var="logout" value="/logoutAuthorize"/>
 </head>
 <body>
 <h1>スケージュールアプリ</h1>
-<h2>ようこそ、<c:out value="${account.username}"/>さん</h2>
+<a href="${logout}">ログアウト</a>
+<h2><c:out value="${greeting}"/>、<c:out value="${account.username}"/>さん</h2>
 <ul>
-	<li>スケージュール共有</li>
+	<li><a>スケージュール共有</a></li>
 	<li>お風呂出席管理</li>
 </ul>
 </body>

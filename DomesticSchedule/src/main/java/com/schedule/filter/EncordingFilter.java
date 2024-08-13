@@ -10,7 +10,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpFilter;
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * Servlet Filter implementation class EncordingFilter
@@ -39,7 +38,6 @@ public class EncordingFilter extends HttpFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 
-		System.out.println(((HttpServletRequest) request).getContextPath());
 		if (request.getCharacterEncoding() == null) {
 			request.setCharacterEncoding("UTF-8");
 		}
